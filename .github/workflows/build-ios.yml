@@ -35,7 +35,13 @@ jobs:
       - name: Package app
         run: |
           mkdir -p artifact
-          cp -R ~/Library/Developer/Xcode/DerivedData/Muyynguyennn-*/Build/Products/Debug-iphonesimulator/Muyynguyennn.app artifact/
+          APP_PATH=$(find build -type d -name "Muyynguyennn.app" -print -quit)
+          if [ -z "$APP_PATH" ]; then
+          echo "Không tìm thấy Muyynguyennn.app"
+          find build -maxdepth 5 -type d | head -100
+          exit 1
+          fi
+          cp -R "$APP_PATH" artifact/Muyynguyennn.app
 
       - name: Upload build
         uses: actions/upload-artifact@v4
