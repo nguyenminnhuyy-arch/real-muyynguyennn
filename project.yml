@@ -1,1 +1,45 @@
+name: Muyynguyennn
 
+options:
+  bundleIdPrefix: com.muyynguyennn
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: 5.0
+    IPHONEOS_DEPLOYMENT_TARGET: 15.0
+    TARGETED_DEVICE_FAMILY: "1,2"
+
+targets:
+  Muyynguyennn:
+    type: application
+    platform: iOS
+
+    sources:
+      - path: .
+        excludes:
+          - project.yml
+          - .github/**
+
+    resources:
+      - path: Assets.xcassets
+      - path: en.lproj
+      - path: vi.lproj
+      - path: zh-Hans.lproj
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.muyynguyennn.app
+        INFOPLIST_FILE: Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: ThreeOneOSFive-Bridging-Header.h
+        PRODUCT_NAME: Muyynguyennn
+        SWIFT_VERSION: 5.0
+        CODE_SIGNING_ALLOWED: NO
+        CODE_SIGNING_REQUIRED: NO
+        DEVELOPMENT_TEAM: ""
+
+    info:
+      path: Info.plist
