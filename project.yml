@@ -3,14 +3,14 @@ name: Muyynguyennn
 options:
   bundleIdPrefix: com.muyynguyennn
   deploymentTarget:
-    iOS: "15.0"
+    iOS: "16.0"
   createIntermediateGroups: true
   groupSortPosition: top
 
 settings:
   base:
     SWIFT_VERSION: 5.0
-    IPHONEOS_DEPLOYMENT_TARGET: 15.0
+    IPHONEOS_DEPLOYMENT_TARGET: 16.0
     TARGETED_DEVICE_FAMILY: "1,2"
 
 targets:
