@@ -1,0 +1,43 @@
+name: Build iOS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build iOS Simulator
+        run: |
+          xcodebuild \
+            -project Muyynguyennn.xcodeproj \
+            -scheme Muyynguyennn \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package app
+        run: |
+          mkdir -p artifact
+          cp -R ~/Library/Developer/Xcode/DerivedData/Muyynguyennn-*/Build/Products/Debug-iphonesimulator/Muyynguyennn.app artifact/
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Muyynguyennn-iOS-Simulator
+          path: artifact/
